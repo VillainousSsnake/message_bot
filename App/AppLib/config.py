@@ -5,7 +5,9 @@
 import os
 
 # Creating default_settings
-default_settings = '''current_theme: Dark'''  # Default settings variable
+default_settings = '''current_theme: Dark
+previous_interval: None
+previous_message: None'''  # Default settings variable
 
 
 class Config:

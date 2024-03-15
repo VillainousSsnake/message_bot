@@ -11,4 +11,6 @@ class App:
         self.returnStatement = "main"
         self.settings = {
             "current_theme": Config.get_setting("current_theme"),
+            "previous_interval": Config.get_setting("previous_interval"),
+            "previous_message": Config.get_setting("previous_message"),
         }
