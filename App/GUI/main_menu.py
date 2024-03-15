@@ -6,6 +6,12 @@
 import customtkinter as ctk
 
 
+# ProgFunc class, contains functions that the program uses
+class ProgFunc:
+    def __init__(self):
+        pass  # TODO: Stub
+
+
 # main_menu function
 def main_menu(app):
 
