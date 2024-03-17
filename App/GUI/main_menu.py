@@ -9,8 +9,6 @@ import customtkinter as ctk
 
 # ProgFunc class, contains functions that the program uses
 class ProgFunc:
-    def __init__(self):
-        pass  # TODO: Stub
 
     @staticmethod
     def update_time_interval_entry(self, event):
