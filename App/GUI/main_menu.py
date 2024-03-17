@@ -57,7 +57,7 @@ def main_menu(app):
 
     # Binding an update command to time_interval_entry
     time_interval_entry_command = partial(ProgFunc.update_time_interval_entry, time_interval_entry)
-    time_interval_entry.bind("<Keys>", time_interval_entry_command)
+    time_interval_entry.bind("<Key>", time_interval_entry_command)
 
     # TODO: More code goes here
 
