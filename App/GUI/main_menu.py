@@ -12,7 +12,20 @@ class ProgFunc:
 
     @staticmethod
     def update_time_interval_entry(self, event):
-        pass  # TODO: Stub
+
+        text = self.get()
+
+        if event.keysym == "BackSpace":
+            text = text[:len(text) - 1]
+        elif hasattr(event, "char"):
+            text = text + event.char
+
+        if str(text).isdigit():
+            self.configure(text_color="white")
+        else:
+            self.configure(text_color="red")
+
+        # TODO: Finish this function
 
 
 # main_menu function
@@ -34,16 +47,16 @@ def main_menu(app):
     # Creating a time interval label and entry
     time_interval_label = ctk.CTkLabel(
         master=root,
-        text="Time interval:",
+        text="Time interval (Milliseconds):",
         fg_color="#1F6AA5",
-        width=150,
+        width=200,
         corner_radius=15,
     )
     time_interval_label.pack()
 
     time_interval_entry = ctk.CTkEntry(
         master=root,
-        width=150,
+        width=200,
     )
     time_interval_entry.pack()
 
