@@ -163,7 +163,7 @@ def main_menu(app):
 
     # Creating time interval frame
     time_interval_frame = ctk.CTkFrame(master=root, fg_color="#242424")
-    time_interval_frame.pack()
+    time_interval_frame.pack(pady=10)
 
     # Creating a time interval frame children
     time_interval_label = ctk.CTkLabel(
@@ -196,7 +196,7 @@ def main_menu(app):
     message_frame = ctk.CTkFrame(
         master=root,
     )
-    message_frame.pack(pady=20)
+    message_frame.pack(pady=10)
 
     # Creating message frame children
     message_label = ctk.CTkLabel(
@@ -225,6 +225,26 @@ def main_menu(app):
     message_entry_command = partial(ProgFunc.update_message_entry, message_entry)
     message_entry.bind("<Key>", message_entry_command)
 
+    # Creating hotkey frame
+    hotkey_frame = ctk.CTkFrame(
+        master=root,
+        fg_color="#242424"
+    )
+    hotkey_frame.pack(pady=10)
+
+    # Creating the hotkey frame's children
+    hotkey_label = ctk.CTkLabel(
+        master=hotkey_frame,
+        text="Toggle Start/Stop Hotkey:",
+        fg_color="#1F6AA5",
+        width=200,
+        corner_radius=15,
+        anchor="w",
+    )
+    hotkey_label.pack()
+
+    # TODO: Finish creating and configuring hotkey_frame's children
+
     # Creating the toggle bot frame
     toggle_bot_frame = ctk.CTkFrame(master=root, fg_color="#242424")
     toggle_bot_frame.pack()
@@ -234,7 +254,7 @@ def main_menu(app):
         master=toggle_bot_frame,
         text="Start Bot",
     )
-    toggle_bot_button.pack()
+    toggle_bot_button.pack(pady=10)
 
     # Assigning the toggle_bot_button command
     toggle_bot_button_command = partial(
