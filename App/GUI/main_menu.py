@@ -108,6 +108,10 @@ def main_menu(app):
     else:
         message_entry.insert(0, app.settings["previous_interval"])
 
+    # Assigning the update command to message entry
+    message_entry_command = partial(ProgFunc.update_message_entry, message_entry)
+    message_entry.bind("<Key>", message_entry_command)
+
     # TODO: More code goes here
 
     # Root mainloop
