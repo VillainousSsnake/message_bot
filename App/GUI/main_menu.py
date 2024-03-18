@@ -44,18 +44,23 @@ def main_menu(app):
     # Assigning the buttons on the tkinter window top bar
     root.protocol("WM_DELETE_WINDOW", on_close)
 
-    # Creating a time interval label and entry
+    # Creating time interval frame
+    time_interval_frame = ctk.CTkFrame(master=root, fg_color="#242424")
+    time_interval_frame.pack()
+
+    # Creating a time interval frame children
     time_interval_label = ctk.CTkLabel(
-        master=root,
+        master=time_interval_frame,
         text="Time interval (Milliseconds):",
         fg_color="#1F6AA5",
         width=200,
         corner_radius=15,
+        anchor="w",
     )
     time_interval_label.pack()
 
     time_interval_entry = ctk.CTkEntry(
-        master=root,
+        master=time_interval_frame,
         width=200,
     )
     time_interval_entry.pack()
@@ -65,10 +70,6 @@ def main_menu(app):
         time_interval_entry.configure(placeholder_text="(Eg. '100' for 100 milliseconds)")
     else:
         time_interval_entry.insert(0, app.settings["previous_interval"])
-
-    # Binding an update command to time_interval_entry
-    time_interval_entry_command = partial(ProgFunc.update_time_interval_entry, time_interval_entry)
-    time_interval_entry.bind("<Key>", time_interval_entry_command)
 
     # TODO: More code goes here
 
