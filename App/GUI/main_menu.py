@@ -102,6 +102,12 @@ def main_menu(app):
     )
     message_entry.pack()
 
+    # Inserting the correct number into time_interval_entry
+    if app.settings["previous_message"] is None:
+        message_entry.configure(placeholder_text="(Eg. \"Hello!\")")
+    else:
+        message_entry.insert(0, app.settings["previous_interval"])
+
     # TODO: More code goes here
 
     # Root mainloop
