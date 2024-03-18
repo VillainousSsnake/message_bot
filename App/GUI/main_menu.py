@@ -12,6 +12,9 @@ import keyboard
 
 # Creating global variable
 BotIsRunning_global = False
+SpecialCharactersList_global = [
+   "~", "!", "@", "#", "$", "%", "^", "&", "(", ")", "_"
+]
 
 
 # ProgFunc class, contains functions that the program uses
@@ -114,7 +117,7 @@ class ProgFunc:
 
                         root.update()
 
-                        if item.isupper():
+                        if item.isupper() or item in SpecialCharactersList_global:
                             keyboard.press("shift")
                             keyboard.press_and_release(item)
                             keyboard.release("shift")
@@ -128,7 +131,7 @@ class ProgFunc:
                             toggle_bot_button.configure(text="Start Bot", text_color="white")
 
                     timer_command = partial(ProgFunc.update_while_timer_running, root)
-                    thread = Thread(target=timer_command, )
+                    thread = Thread(target=timer_command)
                     thread.start()
 
                     time.sleep(int(Config.get_setting("previous_interval"))/1000)
