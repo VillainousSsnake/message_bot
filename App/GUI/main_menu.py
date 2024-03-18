@@ -1,11 +1,12 @@
 # /App/GUI/main_menu.py
 # Contains main menu code
-
+import time
 
 # Importing modules and libraries:
 from App.AppLib.config import Config
 from functools import partial
 import customtkinter as ctk
+from threading import Event, Thread
 import keyboard
 
 
@@ -15,6 +16,10 @@ BotIsRunning_global = False
 
 # ProgFunc class, contains functions that the program uses
 class ProgFunc:
+
+    @staticmethod
+    def update_while_timer_running(root):
+        root.update()
 
     @staticmethod
     def update_time_interval_entry(self: ctk.CTkEntry, event):
@@ -45,7 +50,12 @@ class ProgFunc:
         Config.overwrite_setting("previous_message", text)
 
     @staticmethod
-    def toggle_bot_command(message_entry: ctk.CTkEntry, toggle_bot_button: ctk.CTkButton):
+    def toggle_bot_command(
+            message_entry: ctk.CTkEntry,
+            toggle_bot_button: ctk.CTkButton,
+            root: ctk.CTk,
+            app,
+    ):
 
         # Importing global variables
         global BotIsRunning_global
@@ -99,8 +109,31 @@ class ProgFunc:
                 BotIsRunning_global = True
 
                 while BotIsRunning_global:
+
                     for item in text:
-                        keyboard.press_and_release(item)
+
+                        root.update()
+
+                        if item.isupper():
+                            keyboard.press("shift")
+                            keyboard.press_and_release(item)
+                            keyboard.release("shift")
+                        else:
+                            keyboard.press_and_release(item)
+
+                        if keyboard.is_pressed(app.settings["toggle_hotkey"]):
+                            BotIsRunning_global = False
+
+                            # Changing the text for toggle_bot_button
+                            toggle_bot_button.configure(text="Start Bot", text_color="white")
+
+                    timer_command = partial(ProgFunc.update_while_timer_running, root)
+                    thread = Thread(target=timer_command, )
+                    thread.start()
+
+                    time.sleep(int(Config.get_setting("previous_interval"))/1000)
+
+                    del thread
 
             case "Stop":
                 BotIsRunning_global = False
@@ -207,6 +240,8 @@ def main_menu(app):
         ProgFunc.toggle_bot_command,
         message_entry,
         toggle_bot_button,
+        root,
+        app,
     )
     toggle_bot_button.configure(command=toggle_bot_button_command)
 
