@@ -12,7 +12,7 @@ import customtkinter as ctk
 class ProgFunc:
 
     @staticmethod
-    def update_time_interval_entry(self, event):
+    def update_time_interval_entry(self: ctk.CTkEntry, event):
 
         text = self.get()
 
@@ -28,7 +28,7 @@ class ProgFunc:
             self.configure(text_color="red")
 
     @staticmethod
-    def update_message_entry(self, event):
+    def update_message_entry(self: ctk.CTkEntry, event):
 
         text = self.get()
 
