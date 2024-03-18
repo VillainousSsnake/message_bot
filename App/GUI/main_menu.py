@@ -47,11 +47,11 @@ class ProgFunc:
 
         match status:
 
-            case "Start":
+            case "Start Bot":
                 toggle_bot_button.configure(text="Stop", text_color="red")
 
             case "Stop":
-                toggle_bot_button.configure(text="Start", text_color="white")
+                toggle_bot_button.configure(text="Start Bot", text_color="white")
 
         # Getting and formatting the text to type
         text = message_entry.get()
