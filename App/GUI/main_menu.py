@@ -40,8 +40,20 @@ class ProgFunc:
         Config.overwrite_setting("previous_message", text)
 
     @staticmethod
-    def toggle_bot_command(message_entry: ctk.CTkEntry):
+    def toggle_bot_command(message_entry: ctk.CTkEntry, toggle_bot_button: ctk.CTkButton):
 
+        # Changing the toggle_bot_button's text
+        status = toggle_bot_button.cget("text")
+
+        match status:
+
+            case "Start":
+                toggle_bot_button.configure(text="Stop", text_color="red")
+
+            case "Stop":
+                toggle_bot_button.configure(text="Start", text_color="white")
+
+        # Getting and formatting the text to type
         text = message_entry.get()
 
         special_characters_dict = {
@@ -54,6 +66,8 @@ class ProgFunc:
                 text.replace(key, special_characters_dict[key])
 
         print(text)
+
+        # TODO: Finish function
 
 
 # main_menu function
@@ -135,6 +149,25 @@ def main_menu(app):
     # Assigning the update command to message entry
     message_entry_command = partial(ProgFunc.update_message_entry, message_entry)
     message_entry.bind("<Key>", message_entry_command)
+
+    # Creating the toggle bot frame
+    toggle_bot_frame = ctk.CTkFrame(master=root, fg_color="#242424")
+    toggle_bot_frame.pack()
+
+    # Creating the toggle bot frame's children
+    toggle_bot_button = ctk.CTkButton(
+        master=toggle_bot_frame,
+        text="Start Bot",
+    )
+    toggle_bot_button.pack()
+
+    # Assigning the toggle_bot_button command
+    toggle_bot_button_command = partial(
+        ProgFunc.toggle_bot_command,
+        message_entry,
+        toggle_bot_button,
+    )
+    toggle_bot_button.configure(command=toggle_bot_button_command)
 
     # TODO: More code goes here
 
