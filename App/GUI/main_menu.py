@@ -42,30 +42,35 @@ class ProgFunc:
     @staticmethod
     def toggle_bot_command(message_entry: ctk.CTkEntry, toggle_bot_button: ctk.CTkButton):
 
-        # Changing the toggle_bot_button's text
+        # Getting the text from toggle_bot_button
         status = toggle_bot_button.cget("text")
 
         match status:
 
-            case "Start Bot":
+            case "Start Bot":   # Starting the bot
+
+                # Changing the text for toggle_bot_button
                 toggle_bot_button.configure(text="Stop", text_color="red")
 
+                # Getting and formatting the text to type
+                text = message_entry.get()
+
+                special_characters_dict = {
+                    "\\n": "\n",
+                    "\\\\": "\\",
+                }
+
+                for key in special_characters_dict:
+                    if key in text:
+                        print("True")
+                        text.replace(key, special_characters_dict[key])
+
+                print(text)  # TODO: Remove
+
             case "Stop":
+
+                # Changing the text for toggle_bot_button
                 toggle_bot_button.configure(text="Start Bot", text_color="white")
-
-        # Getting and formatting the text to type
-        text = message_entry.get()
-
-        special_characters_dict = {
-            "\\n": "\n",
-            "\\\\": "\\",
-        }
-
-        for key in special_characters_dict:
-            if key in text:
-                text.replace(key, special_characters_dict[key])
-
-        print(text) # TODO: Remove
 
         # TODO: Finish function
 
