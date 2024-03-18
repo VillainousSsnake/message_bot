@@ -29,7 +29,15 @@ class ProgFunc:
 
     @staticmethod
     def update_message_entry(self, event):
-        pass  # TODO: Stub
+
+        text = self.get()
+
+        if event.keysym == "BackSpace":
+            text = text[:len(text) - 1]
+        elif hasattr(event, "char"):
+            text = text + event.char
+
+        Config.overwrite_setting("previous_message", text)
 
 
 # main_menu function
@@ -106,7 +114,7 @@ def main_menu(app):
     if app.settings["previous_message"] is None:
         message_entry.configure(placeholder_text="(Eg. \"Hello!\")")
     else:
-        message_entry.insert(0, app.settings["previous_interval"])
+        message_entry.insert(0, app.settings["previous_message"])
 
     # Assigning the update command to message entry
     message_entry_command = partial(ProgFunc.update_message_entry, message_entry)
