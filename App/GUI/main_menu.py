@@ -6,6 +6,11 @@
 from App.AppLib.config import Config
 from functools import partial
 import customtkinter as ctk
+import keyboard
+
+
+# Creating global variable
+GlobalBotIsRunning = False
 
 
 # ProgFunc class, contains functions that the program uses
@@ -42,6 +47,9 @@ class ProgFunc:
     @staticmethod
     def toggle_bot_command(message_entry: ctk.CTkEntry, toggle_bot_button: ctk.CTkButton):
 
+        # Importing global variables
+        global GlobalBotIsRunning
+
         # Getting the text from toggle_bot_button
         status = toggle_bot_button.cget("text")
 
@@ -56,18 +64,46 @@ class ProgFunc:
                 text = message_entry.get()
 
                 special_characters_dict = {
-                    "\\n": "\n",
-                    "\\\\": "\\",
+                    r"\n": "\n",
+                    r"\\": "\\",
                 }
 
                 for key in special_characters_dict:
                     if key in text:
-                        print("True")
-                        text.replace(key, special_characters_dict[key])
+                        new_text = []
+                        counter = 0
+                        skip = False
 
-                print(text)  # TODO: Remove
+                        for item in list(text):
+
+                            if not skip:    # If it doesn't skip
+
+                                if item == "\\":
+                                    if list(text)[counter+1] == "\\":
+                                        new_text.append("\\")
+                                        skip = True
+                                    elif list(text)[counter+1] == "n":
+                                        new_text.append("enter")
+                                        skip = True
+                                else:
+                                    new_text.append(item)
+
+                            else:   # Setting skip to True
+                                skip = True
+
+                            counter += 1
+
+                        text = new_text
+
+                # Typing text
+                GlobalBotIsRunning = True
+
+                while GlobalBotIsRunning:
+                    for item in text:
+                        keyboard.press_and_release(item)
 
             case "Stop":
+                GlobalBotIsRunning = False
 
                 # Changing the text for toggle_bot_button
                 toggle_bot_button.configure(text="Start Bot", text_color="white")
