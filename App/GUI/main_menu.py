@@ -65,7 +65,7 @@ class ProgFunc:
             if key in text:
                 text.replace(key, special_characters_dict[key])
 
-        print(text)
+        print(text) # TODO: Remove
 
         # TODO: Finish function
 
