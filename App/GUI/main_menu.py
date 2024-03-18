@@ -71,6 +71,33 @@ def main_menu(app):
     else:
         time_interval_entry.insert(0, app.settings["previous_interval"])
 
+        # Binding an update command to time_interval_entry
+        time_interval_entry_command = partial(ProgFunc.update_time_interval_entry, time_interval_entry)
+        time_interval_entry.bind("<Key>", time_interval_entry_command)
+
+        # Creating a message frame
+        message_frame = ctk.CTkFrame(
+            master=root,
+        )
+        message_frame.pack(pady=20)
+
+        # Creating message frame children
+        message_label = ctk.CTkLabel(
+            master=message_frame,
+            text="Message:",
+            fg_color="#1F6AA5",
+            width=200,
+            corner_radius=15,
+            anchor="w",
+        )
+        message_label.pack()
+
+        message_entry = ctk.CTkEntry(
+            master=message_frame,
+            width=200,
+        )
+        message_entry.pack()
+
     # TODO: More code goes here
 
     # Root mainloop
