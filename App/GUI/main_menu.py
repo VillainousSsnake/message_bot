@@ -39,6 +39,22 @@ class ProgFunc:
 
         Config.overwrite_setting("previous_message", text)
 
+    @staticmethod
+    def toggle_bot_command(message_entry: ctk.CTkEntry):
+
+        text = message_entry.get()
+
+        special_characters_dict = {
+            "\\n": "\n",
+            "\\\\": "\\",
+        }
+
+        for key in special_characters_dict:
+            if key in text:
+                text.replace(key, special_characters_dict[key])
+
+        print(text)
+
 
 # main_menu function
 def main_menu(app):
