@@ -144,8 +144,6 @@ class ProgFunc:
                 # Changing the text for toggle_bot_button
                 toggle_bot_button.configure(text="Start Bot", text_color="white")
 
-        # TODO: Finish function
-
 
 # main_menu function
 def main_menu(app):
@@ -247,8 +245,6 @@ def main_menu(app):
         app,
     )
     toggle_bot_button.configure(command=toggle_bot_button_command)
-
-    # TODO: More code goes here
 
     # Root mainloop
     root.mainloop()
