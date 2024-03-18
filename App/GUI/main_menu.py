@@ -10,7 +10,7 @@ import keyboard
 
 
 # Creating global variable
-GlobalBotIsRunning = False
+BotIsRunning_global = False
 
 
 # ProgFunc class, contains functions that the program uses
@@ -48,7 +48,7 @@ class ProgFunc:
     def toggle_bot_command(message_entry: ctk.CTkEntry, toggle_bot_button: ctk.CTkButton):
 
         # Importing global variables
-        global GlobalBotIsRunning
+        global BotIsRunning_global
 
         # Getting the text from toggle_bot_button
         status = toggle_bot_button.cget("text")
@@ -96,14 +96,14 @@ class ProgFunc:
                         text = new_text
 
                 # Typing text
-                GlobalBotIsRunning = True
+                BotIsRunning_global = True
 
-                while GlobalBotIsRunning:
+                while BotIsRunning_global:
                     for item in text:
                         keyboard.press_and_release(item)
 
             case "Stop":
-                GlobalBotIsRunning = False
+                BotIsRunning_global = False
 
                 # Changing the text for toggle_bot_button
                 toggle_bot_button.configure(text="Start Bot", text_color="white")
