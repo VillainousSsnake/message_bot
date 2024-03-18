@@ -7,7 +7,8 @@ import os
 # Creating default_settings
 default_settings = '''current_theme: Dark
 previous_interval: None
-previous_message: None'''  # Default settings variable
+previous_message: None
+toggle_hotkey: shift+t'''  # Default settings variable
 
 
 class Config:
