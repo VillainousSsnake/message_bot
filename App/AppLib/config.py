@@ -87,6 +87,12 @@ class Config:
         new_data = {}
 
         for item in data:
+
+            # Skipping blank lines
+            if item == "":
+                break
+
+            # Creating the entry for the new_data dict
             new_data[item.split(": ")[0]] = item.split(": ")[1]
 
         output = new_data[entry]
@@ -121,6 +127,12 @@ class Config:
         new_data = {}
 
         for item in data:
+
+            # Skipping blank lines
+            if item == "":
+                break
+
+            # Creating the entry for the new_data dict
             new_data[item.split(": ")[0]] = item.split(": ")[1]
 
         # Detecting booleans in the value and converting them to strings
