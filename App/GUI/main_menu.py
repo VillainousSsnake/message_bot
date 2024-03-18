@@ -3,6 +3,7 @@
 
 
 # Importing modules and libraries:
+from App.AppLib.config import Config
 from functools import partial
 import customtkinter as ctk
 
@@ -22,10 +23,9 @@ class ProgFunc:
 
         if str(text).isdigit():
             self.configure(text_color="white")
+            Config.overwrite_setting("previous_interval", text)
         else:
             self.configure(text_color="red")
-
-        # TODO: Finish this function
 
 
 # main_menu function
@@ -64,7 +64,7 @@ def main_menu(app):
     if app.settings["previous_interval"] is None:
         time_interval_entry.configure(placeholder_text="(Eg. '100' for 100 milliseconds)")
     else:
-        time_interval_entry.insert("0.0", app.settings["previous_interval"])
+        time_interval_entry.insert(0, app.settings["previous_interval"])
 
     # Binding an update command to time_interval_entry
     time_interval_entry_command = partial(ProgFunc.update_time_interval_entry, time_interval_entry)
