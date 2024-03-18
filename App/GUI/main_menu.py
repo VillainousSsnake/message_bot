@@ -6,7 +6,7 @@ import time
 from App.AppLib.config import Config
 from functools import partial
 import customtkinter as ctk
-from threading import Event, Thread
+from threading import Thread
 import keyboard
 
 
