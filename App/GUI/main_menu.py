@@ -4,6 +4,7 @@ import time
 
 # Importing modules and libraries:
 from App.AppLib.config import Config
+from tkinter import messagebox
 from functools import partial
 from threading import Thread
 import customtkinter as ctk
@@ -134,6 +135,28 @@ class ProgFunc:
                     timer_command = partial(ProgFunc.update_while_timer_running, root)
                     thread = Thread(target=timer_command)
                     thread.start()
+
+                    # Preforming sanity checks
+                    if Config.get_setting("previous_interval") is None and Config.get_setting("previous_message") is None:
+                        messagebox.showerror(
+                            "Error",
+                            "Please fill out the interval entry and the message entry",
+                        )
+                        return 0
+
+                    elif Config.get_setting("previous_interval") is None:
+                        messagebox.showerror(
+                            "Error",
+                            "Please fill out the interval entry"
+                        )
+                        return 0
+
+                    elif Config.get_setting("previous_message") is None:
+                        messagebox.showerror(
+                            "Error",
+                            "Please fill out the message entry"
+                        )
+                        return 0
 
                     time.sleep(int(Config.get_setting("previous_interval"))/1000)
 
