@@ -163,7 +163,7 @@ def main_menu(app):
 
     # Creating root window
     root = ctk.CTk()
-    root.title("message_bot - Main Menu - App Version: 1.0 - HigharcheySDL Version: 1.0")
+    root.title("message_bot - v1.0.0")
     root.geometry("300x300")
 
     # Defining on_close function
