@@ -16,4 +16,5 @@ There are special characters that are supported!
 `\n` types `Enter`
 ... more coming soon maybe? (let me know in (issues)[https://github.com/VillainousSsnake/message_bot/issues] if you want me to add something)
 
-# Submit Bug reports in (issues by clicking here!)[https://github.com/VillainousSsnake/message_bot/issues]
+# Submit Bug reports in issues!
+Submit Bug reports in issues by (clicking here!)[https://github.com/VillainousSsnake/message_bot/issues]
