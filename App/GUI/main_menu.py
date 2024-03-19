@@ -208,6 +208,7 @@ def main_menu(app):
     # Creating a message frame
     message_frame = ctk.CTkFrame(
         master=root,
+        fg_color="#242424"
     )
     message_frame.pack(pady=10)
 
