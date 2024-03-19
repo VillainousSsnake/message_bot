@@ -49,6 +49,10 @@ class ProgFunc:
 
         if event.keysym == "BackSpace":
             text = text[:len(text) - 1]
+
+            # Making empty strings convert to 'None'
+            if text == "":
+                text = None
         elif hasattr(event, "char"):
             text = text + event.char
 
