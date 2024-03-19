@@ -147,7 +147,15 @@ class ProgFunc:
 
     @staticmethod
     def update_hotkey_entry(self: ctk.CTkEntry, event: tk.Event):
-        pass    # TODO: Stub
+
+        text = self.get()
+
+        if event.keysym == "BackSpace":
+            text = text[:len(text) - 1]
+        elif hasattr(event, "char"):
+            text = text + event.char
+
+        Config.overwrite_setting("toggle_hotkey", text)
 
 
 # main_menu function
