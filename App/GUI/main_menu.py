@@ -5,8 +5,9 @@ import time
 # Importing modules and libraries:
 from App.AppLib.config import Config
 from functools import partial
-import customtkinter as ctk
 from threading import Thread
+import customtkinter as ctk
+import tkinter as tk
 import keyboard
 
 
@@ -145,7 +146,7 @@ class ProgFunc:
                 toggle_bot_button.configure(text="Start Bot", text_color="white")
 
     @staticmethod
-    def update_hotkey_entry(self, event):
+    def update_hotkey_entry(self: ctk.CTkEntry, event: tk.Event):
         pass    # TODO: Stub
 
 
