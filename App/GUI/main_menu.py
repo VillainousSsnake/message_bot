@@ -42,6 +42,10 @@ class ProgFunc:
         else:
             self.configure(text_color="red")
 
+            if str(text) == "":
+                self.configure(text_color="white")
+                Config.overwrite_setting("previous_interval", None)
+
     @staticmethod
     def update_message_entry(self: ctk.CTkEntry, event):
 
