@@ -144,6 +144,10 @@ class ProgFunc:
                 # Changing the text for toggle_bot_button
                 toggle_bot_button.configure(text="Start Bot", text_color="white")
 
+    @staticmethod
+    def update_hotkey_entry(self, event):
+        pass    # TODO: Stub
+
 
 # main_menu function
 def main_menu(app):
@@ -243,7 +247,18 @@ def main_menu(app):
     )
     hotkey_label.pack()
 
-    # TODO: Finish creating and configuring hotkey_frame's children
+    hotkey_entry = ctk.CTkEntry(
+        master=hotkey_frame,
+        width=200,
+    )
+    hotkey_entry.pack()
+
+    # Inserting text into hotkey_entry
+    hotkey_entry.insert(0, Config.get_setting("toggle_hotkey"))
+
+    # Assigning update function to hotkey entry
+    hotkey_entry_command = partial(ProgFunc.update_hotkey_entry, hotkey_entry)
+    hotkey_entry.bind("<Key>", hotkey_entry_command)
 
     # Creating the toggle bot frame
     toggle_bot_frame = ctk.CTkFrame(master=root, fg_color="#242424")
